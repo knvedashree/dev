@@ -1,0 +1,9 @@
+node
+{
+stage "1. update the system"
+sh yum update -y
+stage "2. install some packages"
+sh yum install -y git
+stage "3. create folder"
+mkdir scripted-pipline
+}
