@@ -1,9 +1,16 @@
 node
-{
-stage "1. update the system"
-sh yum update -y
-stage "2. install some packages"
-sh yum install -y git
-stage "3. create folder"
-mkdir scripted-pipline
+   {
+   stage "1. update the system"
+   sh "yum update -y"
+
+   stage "2. install the package"
+   sh "yum install -y git"
+
+   stage "3. create folder"
+   sh "mkdir scripted-pipeline-2"
+   
+   stage "4. create file"
+   sh "cd scripted-pipeline-2"
+   sh "echo test data >> testfiles"
+
 }
