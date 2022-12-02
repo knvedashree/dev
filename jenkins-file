@@ -1,15 +1,38 @@
-node
-   {
-   stage "1. update the system"
-   sh "yum update -y"
 
-   stage "2. install the package"
-   sh "yum install -y git"
-
-   stage "3. create folder"
-   sh "mkdir scripted-pipeline-3"
-   
-   stage "4. create file"
-   sh "cd scripted-pipeline-3"
-   sh "echo test data >> testfiles-1"
+pipeline {
+    agent any 
+    stages {
+        stage ("1. 1. install ansible pkg") {
+            steps {
+                sh "amazon-linux-extras install -y ansible2"
+                sh "mkdir -p inbound"
+                sh "mkdir -p outbound"
+            }
+        }
+        stage ("2. install httpd service") {
+            steps {
+                sh "yum install httpd -y"
+                sh "yum install -y docker"
+            }
+        }
+        stage ("3. service start") {
+            steps {
+                sh "systemctl restart httpd"
+                sh "systemctl enable httpd"
+            }
+        }
+        stage ("4. ansible") {
+            steps {
+                sh "ansible --version"
+                sh "rpm -qa | grep ansible"
+            }
+        }
+        stage ("5. create file") {
+            steps {
+                sh "echo test.txt"
+                sh "date"
+                sh "cal"
+            }
+        }
+    }
 }
