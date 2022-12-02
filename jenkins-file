@@ -1,4 +1,3 @@
-
 pipeline {
     agent any 
     stages {
@@ -32,6 +31,7 @@ pipeline {
                 sh "echo test.txt"
                 sh "date"
                 sh "cal"
+                sh "ls -ltr"
             }
         }
     }
