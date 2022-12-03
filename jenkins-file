@@ -4,8 +4,8 @@ pipeline {
         stage ("1. 1. install ansible pkg") {
             steps {
                 sh "amazon-linux-extras install -y ansible2"
-                sh "mkdir -p inbound"
-                sh "mkdir -p outbound"
+                sh "mkdir -p inbound-1"
+                sh "mkdir -p outbound-2"
             }
         }
         stage ("2. install httpd service") {
@@ -18,6 +18,8 @@ pipeline {
             steps {
                 sh "systemctl restart httpd"
                 sh "systemctl enable httpd"
+                sh "systemctl restart docker"
+                sh "systemctl enable docker"
             }
         }
         stage ("4. ansible") {
@@ -31,8 +33,7 @@ pipeline {
                 sh "echo test.txt"
                 sh "date"
                 sh "cal"
-                sh "ls -ltr"
+                sh "ls -lat"
             }
         }
     }
-}
