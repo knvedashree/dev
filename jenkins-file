@@ -20,18 +20,7 @@ pipeline {
                 sh "systemctl enable httpd"
             }
         }
-        stage ("4. ansible") {
-            steps {
-                sh "ansible --version"
-                sh "rpm -qa | grep ansible"
+
             }
         }
-        stage ("5. create file") {
-            steps {
-                sh "echo test.txt"
-                sh "date"
-                sh "cal"
-            }
-        }
-    }
-}
+    
