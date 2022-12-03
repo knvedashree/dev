@@ -8,27 +8,7 @@ pipeline {
                 sh "mkdir -p outbound-2"
             }
         }
-        stage ("2. install httpd service") {
-            steps {
-                sh "yum install httpd -y"
-                sh "yum install -y docker"
-            }
-        }
-        stage ("3. service start") {
-            steps {
-                sh "systemctl restart httpd"
-                sh "systemctl enable httpd"
-                sh "systemctl restart docker"
-                sh "systemctl enable docker"
-            }
-        }
-        stage ("4. ansible") {
-            steps {
-                sh "ansible --version"
-                sh "rpm -qa | grep ansible"
-            }
-        }
-        stage ("5. create file") {
+        stage ("2. create file") {
             steps {
                 sh "echo test.txt"
                 sh "date"
@@ -37,3 +17,4 @@ pipeline {
             }
         }
     }
+}
